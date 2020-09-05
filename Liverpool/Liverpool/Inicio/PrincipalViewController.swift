@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PrincipalViewController: UIViewController {
+class PrincipalViewController: UIViewController, DataEnteredDelegate {
     
     let tableView: UITableView = {
         let tabla = UITableView()
@@ -42,10 +42,18 @@ class PrincipalViewController: UIViewController {
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 20)!]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
         navigationItem.title = "Liverpool"
         
-    
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(busquedaReciente))
+        rightBarButtonItem.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        configurations()
+        
+        setupLayer()
+    }
+
+    func configurations(){
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Buscar en Liverpool..."
@@ -58,10 +66,8 @@ class PrincipalViewController: UIViewController {
         
         refresher.attributedTitle = NSAttributedString(string: "Actualizando")
         refresher.addTarget(self, action: #selector(refreshAction), for: .valueChanged)
-        
-        setupLayer()
     }
-
+    
     func setupLayer(){
         view.addSubview(tableView)
         tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
@@ -85,7 +91,16 @@ class PrincipalViewController: UIViewController {
     
     @objc func refreshAction(_ sender: Any) {
         tableView.reloadData()
-        
+    }
+    
+    @objc func busquedaReciente(){
+        let vc = GuardarViewController()
+        vc.data = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func userDidEnterInformation(info: String) {
+        searchController.searchBar.text! = info
     }
     
     //Consumo del API
@@ -135,6 +150,11 @@ extension PrincipalViewController: UISearchResultsUpdating{
         }
     }
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        busquedaItem = searchController.searchBar.text!.capitalized
+        jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: numeroItem)
+        tableView.reloadData()
+    }
 }
 
 extension PrincipalViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{

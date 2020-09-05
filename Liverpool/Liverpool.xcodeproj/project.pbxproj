@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		864056E525033E09005E6C38 /* GuardarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864056E425033E09005E6C38 /* GuardarViewController.swift */; };
 		86DCAD24250300A400E1FF13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD23250300A400E1FF13 /* AppDelegate.swift */; };
 		86DCAD26250300A400E1FF13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD25250300A400E1FF13 /* SceneDelegate.swift */; };
 		86DCAD28250300A400E1FF13 /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD27250300A400E1FF13 /* PrincipalViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		864056E425033E09005E6C38 /* GuardarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardarViewController.swift; sourceTree = "<group>"; };
 		86DCAD20250300A400E1FF13 /* Liverpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liverpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DCAD23250300A400E1FF13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86DCAD25250300A400E1FF13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,7 +45,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		865465E92503373500D9CEB1 /* Home */ = {
+		864056E625033E14005E6C38 /* Consultas */ = {
+			isa = PBXGroup;
+			children = (
+				864056E425033E09005E6C38 /* GuardarViewController.swift */,
+			);
+			path = Consultas;
+			sourceTree = "<group>";
+		};
+		865465E92503373500D9CEB1 /* Inicio */ = {
 			isa = PBXGroup;
 			children = (
 				86DCAD27250300A400E1FF13 /* PrincipalViewController.swift */,
@@ -51,7 +61,7 @@
 				86DCAD3A2503131B00E1FF13 /* ProductosTableViewCell.xib */,
 				86DCAD37250302FE00E1FF13 /* Data.swift */,
 			);
-			path = Home;
+			path = Inicio;
 			sourceTree = "<group>";
 		};
 		86DCAD17250300A400E1FF13 = {
@@ -73,7 +83,8 @@
 		86DCAD22250300A400E1FF13 /* Liverpool */ = {
 			isa = PBXGroup;
 			children = (
-				865465E92503373500D9CEB1 /* Home */,
+				865465E92503373500D9CEB1 /* Inicio */,
+				864056E625033E14005E6C38 /* Consultas */,
 				86DCAD23250300A400E1FF13 /* AppDelegate.swift */,
 				86DCAD25250300A400E1FF13 /* SceneDelegate.swift */,
 				86DCAD29250300A400E1FF13 /* Main.storyboard */,
@@ -159,6 +170,7 @@
 				86DCAD28250300A400E1FF13 /* PrincipalViewController.swift in Sources */,
 				86DCAD24250300A400E1FF13 /* AppDelegate.swift in Sources */,
 				86DCAD3B2503131B00E1FF13 /* ProductosTableViewCell.swift in Sources */,
+				864056E525033E09005E6C38 /* GuardarViewController.swift in Sources */,
 				86DCAD26250300A400E1FF13 /* SceneDelegate.swift in Sources */,
 				86DCAD38250302FE00E1FF13 /* Data.swift in Sources */,
 			);
