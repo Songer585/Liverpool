@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class PrincipalViewController: UIViewController, DataEnteredDelegate {
+class PrincipalViewController: UIViewController, DataEnteredDelegate, UISearchControllerDelegate {
     
     let tableView: UITableView = {
         let tabla = UITableView()
@@ -34,6 +35,8 @@ class PrincipalViewController: UIViewController, DataEnteredDelegate {
     
     var busquedaItem: String = ""
     var numeroItem: Int = 10
+    
+    let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +88,7 @@ class PrincipalViewController: UIViewController, DataEnteredDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchController.delegate = self
         
         self.tableView.reloadData()
     }
@@ -144,6 +148,14 @@ extension PrincipalViewController: UISearchResultsUpdating{
             jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: numeroItem)
             tableView.reloadData()
         }else {
+            let datos = Busqueda()
+            //Solo falto agregar la cadena correcta
+            datos.titulo = "Computadora"
+            
+            try! self.realm.write {
+                self.realm.add(datos)
+            }
+            
             busquedaItem = ""
             numeroItem = 10
             tableView.reloadData()
@@ -151,6 +163,14 @@ extension PrincipalViewController: UISearchResultsUpdating{
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let datos = Busqueda()
+        datos.titulo = searchController.searchBar.text!
+        
+        try! self.realm.write {
+            self.realm.add(datos)
+        }
+        
         busquedaItem = searchController.searchBar.text!.capitalized
         jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: numeroItem)
         tableView.reloadData()

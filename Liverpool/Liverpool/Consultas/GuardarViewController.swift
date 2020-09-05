@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol DataEnteredDelegate {
     func userDidEnterInformation(info: String)
@@ -22,12 +23,17 @@ class GuardarViewController: UIViewController {
         return tabla
     }()
     
-    var dias = ["Computadora", "Libro", "Blusa", "Refrigerador"]
+//    var dias = ["Computadora", "Libro", "Blusa", "Refrigerador"]
+    
+    let realm = try! Realm()
+    var busqueda: Results<Busqueda>!
     
     var data:DataEnteredDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        busqueda = realm.objects(Busqueda.self)
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 20)!]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -59,17 +65,17 @@ class GuardarViewController: UIViewController {
 extension GuardarViewController: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
         
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dias.count
+        return busqueda.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath)
-        cell.textLabel?.text = dias[indexPath.row]
+        cell.textLabel?.text = busqueda[indexPath.row].titulo
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let data = dias[indexPath.row]
+        let data = busqueda[indexPath.row].titulo
         busqueda(code: data)
         navigationController?.popViewController(animated: true)
     }

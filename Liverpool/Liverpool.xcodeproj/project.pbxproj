@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8638AFE525034609008C005E /* BusquedaReciente.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8638AFE425034609008C005E /* BusquedaReciente.swift */; };
 		864056E525033E09005E6C38 /* GuardarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864056E425033E09005E6C38 /* GuardarViewController.swift */; };
 		86DCAD24250300A400E1FF13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD23250300A400E1FF13 /* AppDelegate.swift */; };
 		86DCAD26250300A400E1FF13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD25250300A400E1FF13 /* SceneDelegate.swift */; };
@@ -17,9 +18,13 @@
 		86DCAD38250302FE00E1FF13 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD37250302FE00E1FF13 /* Data.swift */; };
 		86DCAD3B2503131B00E1FF13 /* ProductosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DCAD392503131B00E1FF13 /* ProductosTableViewCell.swift */; };
 		86DCAD3C2503131B00E1FF13 /* ProductosTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86DCAD3A2503131B00E1FF13 /* ProductosTableViewCell.xib */; };
+		EE10047A146809E0EDE1F3BF /* Pods_Liverpool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE34220C4F700ABDF4253032 /* Pods_Liverpool.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F30052434AD5A2D40142280 /* Pods-Liverpool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Liverpool.debug.xcconfig"; path = "Target Support Files/Pods-Liverpool/Pods-Liverpool.debug.xcconfig"; sourceTree = "<group>"; };
+		2FC2D4A5E594C2FDA62BA835 /* Pods-Liverpool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Liverpool.release.xcconfig"; path = "Target Support Files/Pods-Liverpool/Pods-Liverpool.release.xcconfig"; sourceTree = "<group>"; };
+		8638AFE425034609008C005E /* BusquedaReciente.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusquedaReciente.swift; sourceTree = "<group>"; };
 		864056E425033E09005E6C38 /* GuardarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardarViewController.swift; sourceTree = "<group>"; };
 		86DCAD20250300A400E1FF13 /* Liverpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Liverpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86DCAD23250300A400E1FF13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -32,6 +37,7 @@
 		86DCAD37250302FE00E1FF13 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		86DCAD392503131B00E1FF13 /* ProductosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductosTableViewCell.swift; sourceTree = "<group>"; };
 		86DCAD3A2503131B00E1FF13 /* ProductosTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductosTableViewCell.xib; sourceTree = "<group>"; };
+		BE34220C4F700ABDF4253032 /* Pods_Liverpool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Liverpool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,12 +45,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE10047A146809E0EDE1F3BF /* Pods_Liverpool.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AB594C75E0DC6167BBE8148 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE34220C4F700ABDF4253032 /* Pods_Liverpool.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8398273717D4E1178FA20686 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2F30052434AD5A2D40142280 /* Pods-Liverpool.debug.xcconfig */,
+				2FC2D4A5E594C2FDA62BA835 /* Pods-Liverpool.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		864056E625033E14005E6C38 /* Consultas */ = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +93,8 @@
 			children = (
 				86DCAD22250300A400E1FF13 /* Liverpool */,
 				86DCAD21250300A400E1FF13 /* Products */,
+				8398273717D4E1178FA20686 /* Pods */,
+				2AB594C75E0DC6167BBE8148 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,6 +117,7 @@
 				86DCAD2C250300A900E1FF13 /* Assets.xcassets */,
 				86DCAD2E250300A900E1FF13 /* LaunchScreen.storyboard */,
 				86DCAD31250300A900E1FF13 /* Info.plist */,
+				8638AFE425034609008C005E /* BusquedaReciente.swift */,
 			);
 			path = Liverpool;
 			sourceTree = "<group>";
@@ -102,9 +129,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86DCAD34250300A900E1FF13 /* Build configuration list for PBXNativeTarget "Liverpool" */;
 			buildPhases = (
+				A595E5B53B72571BF2F71F00 /* [CP] Check Pods Manifest.lock */,
 				86DCAD1C250300A400E1FF13 /* Sources */,
 				86DCAD1D250300A400E1FF13 /* Frameworks */,
 				86DCAD1E250300A400E1FF13 /* Resources */,
+				260ABAAE97DF66FCAF78FA23 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -162,6 +191,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		260ABAAE97DF66FCAF78FA23 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Liverpool/Pods-Liverpool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Liverpool/Pods-Liverpool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Liverpool/Pods-Liverpool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A595E5B53B72571BF2F71F00 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Liverpool-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		86DCAD1C250300A400E1FF13 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -171,6 +242,7 @@
 				86DCAD24250300A400E1FF13 /* AppDelegate.swift in Sources */,
 				86DCAD3B2503131B00E1FF13 /* ProductosTableViewCell.swift in Sources */,
 				864056E525033E09005E6C38 /* GuardarViewController.swift in Sources */,
+				8638AFE525034609008C005E /* BusquedaReciente.swift in Sources */,
 				86DCAD26250300A400E1FF13 /* SceneDelegate.swift in Sources */,
 				86DCAD38250302FE00E1FF13 /* Data.swift in Sources */,
 			);
@@ -314,6 +386,7 @@
 		};
 		86DCAD35250300A900E1FF13 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F30052434AD5A2D40142280 /* Pods-Liverpool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -333,6 +406,7 @@
 		};
 		86DCAD36250300A900E1FF13 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FC2D4A5E594C2FDA62BA835 /* Pods-Liverpool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
