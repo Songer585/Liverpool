@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 class Busqueda: Object {
-//Venues
+
     @objc dynamic var titulo = ""
     
     override static func primaryKey() -> String? {

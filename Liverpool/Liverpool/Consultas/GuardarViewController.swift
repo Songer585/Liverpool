@@ -22,9 +22,7 @@ class GuardarViewController: UIViewController {
         tabla.register(UITableViewCell.self, forCellReuseIdentifier: "cellIdentifier")
         return tabla
     }()
-    
-//    var dias = ["Computadora", "Libro", "Blusa", "Refrigerador"]
-    
+        
     let realm = try! Realm()
     var busqueda: Results<Busqueda>!
     
@@ -41,6 +39,10 @@ class GuardarViewController: UIViewController {
         
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationController?.navigationBar.tintColor = .white
+        
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "trash.fill"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(borrarBusquedas))
+        rightBarButtonItem.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = rightBarButtonItem
 
         setupLayer()
     }
@@ -59,6 +61,28 @@ class GuardarViewController: UIViewController {
     //Comunicamos la respuesta por protocolo
     func busqueda(code: String) {
        self.data?.userDidEnterInformation(info: code)
+    }
+    
+    @objc func borrarBusquedas(){
+        alertaBorrado()
+    }
+    
+    //Adicional alerta para eliminar toda la busqueda reciente
+    func alertaBorrado(){
+        let title = "¿Eliminar busquedas recientes?"
+        let alerta = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        
+        let deleteAction = UIAlertAction(title: "Eliminar", style: .destructive, handler: { (action) -> Void in
+            try! self.realm.write{
+                self.realm.deleteAll()
+                self.tableView.reloadData()
+            }
+        })
+        alerta.addAction(cancelAction)
+        alerta.addAction(deleteAction)
+        present(alerta, animated: true, completion: nil)
     }
 }
 

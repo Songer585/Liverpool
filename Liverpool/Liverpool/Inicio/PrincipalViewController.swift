@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class PrincipalViewController: UIViewController, DataEnteredDelegate, UISearchControllerDelegate {
+class PrincipalViewController: UIViewController, DataEnteredDelegate {
     
     let tableView: UITableView = {
         let tabla = UITableView()
@@ -84,13 +84,30 @@ class PrincipalViewController: UIViewController, DataEnteredDelegate, UISearchCo
         myActivityIndicator.widthAnchor.constraint(equalToConstant: 30).isActive = true
         myActivityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
         tableView.addSubview(refresher)
         
         tableView.delegate = self
         tableView.dataSource = self
         searchController.delegate = self
-        
-        self.tableView.reloadData()
+    }
+    
+    //Guarda la consulta del usuario a la base (no se genera duplicidad de id)
+    @objc func adjustForKeyboard(notification: Notification) {
+        if busquedaItem != ""{
+            if notification.name == UIResponder.keyboardWillHideNotification {
+                let datos = Busqueda()
+                datos.titulo = busquedaItem
+                
+                try! self.realm.write {
+                    self.realm.add(datos, update: Realm.UpdatePolicy.modified)
+                    print("Guardo correctamente")
+                }
+            }
+        }
     }
     
     @objc func refreshAction(_ sender: Any) {
@@ -118,6 +135,7 @@ class PrincipalViewController: UIViewController, DataEnteredDelegate, UISearchCo
             
             guard let data = data, error == nil, urlResponse != nil else {
                 print("Algo salio mal")
+                self.myActivityIndicator.stopAnimating()
                 return
             }
             
@@ -129,6 +147,7 @@ class PrincipalViewController: UIViewController, DataEnteredDelegate, UISearchCo
                     self.dataAll = data
                     self.productos = self.dataAll?.plpResults?.records ?? []
                     self.tableView.reloadData()
+                    self.myActivityIndicator.stopAnimating()
                 }
             } catch {
                 print("Algo salio mal despues de la descarga")
@@ -140,40 +159,26 @@ class PrincipalViewController: UIViewController, DataEnteredDelegate, UISearchCo
 }
 
 //Manejo del SearchController
-extension PrincipalViewController: UISearchResultsUpdating{
+extension PrincipalViewController: UISearchResultsUpdating, UISearchControllerDelegate, UITextFieldDelegate{
     
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.isActive{
+            myActivityIndicator.startAnimating()
             busquedaItem = searchController.searchBar.text!.capitalized
-            jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: numeroItem)
-            tableView.reloadData()
-        }else {
-            let datos = Busqueda()
-            //Solo falto agregar la cadena correcta
-            datos.titulo = "Computadora"
-            
-            try! self.realm.write {
-                self.realm.add(datos)
+            DispatchQueue.main.async {
+                self.jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: self.numeroItem)
             }
-            
-            busquedaItem = ""
-            numeroItem = 10
-            tableView.reloadData()
+        }else {
+            if searchController.searchBar.text != ""{
+                //Si regresa de la busqueda reciente
+                myActivityIndicator.startAnimating()
+                self.jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: self.numeroItem)
+            }else{
+                busquedaItem = ""
+                numeroItem = 10
+                tableView.reloadData()
+            }
         }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
-        let datos = Busqueda()
-        datos.titulo = searchController.searchBar.text!
-        
-        try! self.realm.write {
-            self.realm.add(datos)
-        }
-        
-        busquedaItem = searchController.searchBar.text!.capitalized
-        jsonDatos(busqueda: searchController.searchBar.text!.capitalized, numero: numeroItem)
-        tableView.reloadData()
     }
 }
 
@@ -192,7 +197,6 @@ extension PrincipalViewController: UITableViewDelegate, UITableViewDataSource, U
         return cell
     }
     
-////    //Dimension de las celdas
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
